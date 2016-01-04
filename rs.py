@@ -1,5 +1,6 @@
 #coding=utf8
 import random
+import os
 from bs4 import BeautifulSoup
 from itertools import cycle
 from flask import Flask
@@ -9,6 +10,8 @@ app = Flask(__name__)
 
 # ================================================================
 TITLE = "Random Selector"
+REDIS_URL = os.environ['REDISCLOUD_URL']
+print REDIS_URL
 
 @app.route('/rs/')
 def rs():
@@ -25,7 +28,7 @@ def handler_core(slot_candidate,title=TITLE):
     slot_list = [ (idx+1,sc,cle.next()) for idx,sc in enumerate(split_candidate) ]
     # print slot_list
 
-    html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title)
+    html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,debug_info=str(REDIS_URL))
     return html
 
 @app.route('/rs/rs_handler/',methods=['POST'])

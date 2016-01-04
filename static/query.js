@@ -3,8 +3,8 @@ $(document).ready(function () {
         // alert($('#slot_candidate').val());
         // alert($('#t').text());
 
-		$.ajax({
-            url: 'http://127.0.0.1:5000/rs/rs_handler/',
+        $.ajax({
+            url: 'http://0.0.0.0:5000/rs/rs_handler/',
             cache: false,
             async: true,
             dataType: 'html',
@@ -18,5 +18,5 @@ $(document).ready(function () {
                 // alert(response);
             }
         });
-    });
+    })
 });
