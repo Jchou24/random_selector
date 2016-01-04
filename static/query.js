@@ -2,9 +2,10 @@ $(document).ready(function () {
     $('#query').click(function (){
         // alert($('#slot_candidate').val());
         // alert($('#t').text());
-        alert(base_url+'/rs/rs_handler/');
+        // alert(base_url+'/rs/rs_handler/');
         $.ajax({
-            url: base_url+'/rs/rs_handler/',
+            // url: base_url+'/rs/rs_handler/',
+            url: '/rs/rs_handler/',
             crossDomain: true,
             dataType: 'html',
             type:'POST',
