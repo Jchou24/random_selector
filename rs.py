@@ -53,8 +53,17 @@ def rs_handler():
 @app.route('/rs/nccu_eat/')
 def nccu_eat():
     slot_candidate = u"\n".join([u"45大街",u"華越",u"金鮨"])
-    # slot_candidate = "\n".join(["d","s","a"])
     return handler_core(slot_candidate=slot_candidate,title="NCCU Restaurant Selector")
+
+@app.route('/rs/age3/ch/')
+def age3_ch():
+    slot_candidate = u"\n".join([u"英國",u"法國",u"德國",u"俄國",u"荷蘭",u"西班牙",u"葡萄牙",u"鄂圖曼",u"阿茲特克",u"易落魁",u"蘇族",u"中國",u"日本",u"印度"])
+    return handler_core(slot_candidate=slot_candidate,title="Age 3 civilization Selector")
+
+@app.route('/rs/age3/en/')
+def age3_en():
+    slot_candidate = u"\n".join([u"British",u"French",u"Germans",u"Russians",u"Dutch",u"Spanish",u"Portuguese",u"Ottomans",u"Aztec",u"Iroquois",u"Sioux",u"Chinese",u"Japanese",u"Indians"])
+    return handler_core(slot_candidate=slot_candidate,title="Age 3 civilization Selector")
 # ================================================================
 
 
