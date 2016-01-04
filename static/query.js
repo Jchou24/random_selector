@@ -21,7 +21,7 @@ $(document).ready(function () {
     });
 
     $('#share_button').click(function (){
-        $("#share_url").html(base_url+"/?opt="+$('#slot_candidate').val().replace(/\n/g,"|"));
+        $("#share_url").html(base_url+"?opt="+$('#slot_candidate').val().replace(/\n/g,"|"));
         // alert(base_url);
     });
 });

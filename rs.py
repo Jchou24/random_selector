@@ -15,13 +15,15 @@ port = 5000
 
 @app.route('/rs/',methods=['GET'])
 def rs():
-    if request.method == 'GET':
+    if request.method == 'GET' and request.args.get('opt'):
         slot_candidate = request.args.get('opt')
         # print [slot_candidate]
-        slot_candidate = slot_candidate.replace("|","\n")
-        return handler_core(slot_candidate)
-    else:
-        return handler_core("Apple\nOrange\nBanana")
+        if len(slot_candidate) > 0:
+            slot_candidate = slot_candidate.replace("|","\n")
+            # print [slot_candidate]
+            return handler_core(slot_candidate)
+
+    return handler_core("Apple\nOrange\nBanana")
 
 def handler_core(slot_candidate,title=TITLE):
     slot_candidate.strip()
