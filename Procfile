@@ -1,1 +1,1 @@
-web: gunicorn rs:app --log-file=-
+web: python rs:app --log-file=-
