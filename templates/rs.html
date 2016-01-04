@@ -169,9 +169,9 @@
         <div class="span4">
             <form>
             {% if slot_list|length > 0 %}
-            選項: <textarea id='slot_candidate' rows="{{slot_list|length-1}}">{{slot_candidate}}</textarea>
+            Options: <textarea id='slot_candidate' rows="{{slot_list|length-1}}">{{slot_candidate}}</textarea>
             {% else %}
-            選項: <textarea id='slot_candidate' rows="3"></textarea>
+            Options: <textarea id='slot_candidate' rows="3"></textarea>
             {% endif %}
             <input type="button" id='query' value='submit'>
             </form>
