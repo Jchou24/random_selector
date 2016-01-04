@@ -15,6 +15,7 @@
     * i.e Share the selcet options by url.
     * Rule: http://fast-shore-4886.herokuapp.com/rs/?opt=A|B|C
         - i.e seperate the options by "|"
+    * or you can use Share URL to share.
 
 * To do list
     * Using the code to represent the item to avoid disappeared problem.
