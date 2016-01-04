@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Random Selector</title>
+
+<link rel="shortcut icon" href="{{ url_for('static', filename='icon.jpeg') }}">
+
+
+<link href='http://fonts.googleapis.com/css?family=Gravitas+One&text=1234567' rel='stylesheet' type='text/css'>
+
+<script src="{{url_for('static',filename='jquery.min.js')}}"></script>
+<script src="{{url_for('static',filename='jquery.easing.1.3.js')}}" type="text/javascript" charset="utf-8"></script>
+<script src="{{url_for('static',filename='jquery.jSlots.min.js')}}" type="text/javascript" charset="utf-8"></script>
+
+<style type="text/css">
+
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.jSlots-wrapper {
+    overflow: hidden;
+    height: 20px;
+    display: inline-block; /* to size correctly, can use float too, or width*/
+    border: 1px solid #999;
+}
+
+.slot {
+    float: left;
+}
+
+
+/* ---------------------------------------------------------------------
+   FANCY EXAMPLE
+--------------------------------------------------------------------- */
+.fancy .jSlots-wrapper {
+    overflow: hidden;
+    height: 200px;
+    display: inline-block; /* to size correctly, can use float too, or width*/
+    border: 1px solid #999;
+}
+
+.fancy .slot li {
+    line-height: 200px;
+    text-align: center;
+    font-size: 140px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+    font-family: 'Gravitas One', serif;
+    border-left: 1px solid #999;
+}
+
+.fancy .slot:first-child li {
+    border-left: none;
+}
+
+.fancy .slot li span {
+    display: block;
+}
+</style>
+
+</head>
+<body>
+    <script src= "{{url_for('static',filename='query.js')}}"></script>
+    <style type="text/css">
+
+    {% for idx,item,color_ in slot_list %}
+    .fancy .slot li:nth-child({{idx}}) {
+        background-color: {{color_}};
+    }
+    {% endfor %}
+
+    </style>
+
+    <form>
+    {% if slot_list|length > 0 %}
+    選項: <textarea id='slot_candidate' rows="{{slot_list|length-1}}">{{slot_candidate}}</textarea>
+    {% else %}
+    選項: <textarea id='slot_candidate' rows="3">Apple&#10;Orange&#10;Banana</textarea>
+    {% endif %}
+    <input type="button" id='query' value='submit'>
+    </form>
+
+
+
+    <center>
+    <div class="fancy">
+        <ul class="slot">
+            {% for idx,item,color_ in slot_list[:-1] %}
+            <li><span>{{item}}</span></li>
+            {% endfor %}
+        </ul>
+        <br>
+        <input type="button" id="playFancy" value="Play">
+        </br>
+    </div>
+    </center>
+    <script type="text/javascript" charset="utf-8">
+        $('.fancy .slot').jSlots({
+            number : 1,
+            winnerNumber : 0,
+            spinner : '#playFancy',
+            easing : 'easeOutSine',
+            time : 7000,
+            loops : 6,
+            onStart : function() {
+                $('.slot').removeClass('winner');
+            }
+        });
+    </script>
+
+</body>
+</html>
