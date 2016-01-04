@@ -9,3 +9,6 @@
     3. Push "play" to start Random Selector!
 * [NCCU Restaurant Selector](http://fast-shore-4886.herokuapp.com/rs/nccu_eat)
     - A small application for randomly selecting a restaurant.
+
+* To do list
+    * Using the code to represent the item to avoid disappeared problem.
