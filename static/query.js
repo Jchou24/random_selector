@@ -5,8 +5,7 @@ $(document).ready(function () {
         alert(base_url+'/rs/rs_handler/');
         $.ajax({
             url: base_url+'/rs/rs_handler/',
-            cache: false,
-            async: true,
+            crossDomain: true,
             dataType: 'html',
             type:'POST',
             data: { 'slot_candidate': $('#slot_candidate').val(),'title': $('#title').text(),},
