@@ -50,6 +50,7 @@ git commit -m "update"
 git push heroku master
 
 # ============== 幫助 debug =================
+heroku open
 heroku restart
 heroku local web
 heroku logs --tail
