@@ -6,6 +6,7 @@ from itertools import cycle
 from flask import Flask
 from flask import render_template
 from flask import request
+import flask
 app = Flask(__name__)
 
 # ================================================================
@@ -16,7 +17,7 @@ port = 5000
 def rs():
     if request.method == 'GET':
         slot_candidate = request.args.get('opt')
-        print [slot_candidate]
+        # print [slot_candidate]
         slot_candidate = slot_candidate.replace("|","\n")
         return handler_core(slot_candidate)
     else:
@@ -27,14 +28,14 @@ def handler_core(slot_candidate,title=TITLE):
     split_candidate = slot_candidate.split('\n')
     random.shuffle(split_candidate)
     split_candidate.append("")
-    print split_candidate
+    # print split_candidate
     render_coler = ["#FFCE29","#FFA22B","#FF8645","#FF6D3F","#FF494C","#FF3333","#FF0000"]
     cle = cycle(render_coler)
     slot_list = [ (idx+1,sc,cle.next()) for idx,sc in enumerate(split_candidate) ]
     # print slot_list
 
     # html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,debug_info=str(REDIS_URL))
-    html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,port=port,debug_info=None)
+    html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,base_url=request.base_url,debug_info=None)
     return html
 
 @app.route('/rs/rs_handler/',methods=['POST'])
@@ -56,6 +57,7 @@ def nccu_eat():
 
 
 if __name__ == "__main__":
-    # app.run(debug=True)
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(debug=True)
+
+    # port = int(os.environ.get("PORT", 5000))
+    # app.run(host='0.0.0.0', port=port)
