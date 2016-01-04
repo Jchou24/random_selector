@@ -1,0 +1,55 @@
+# ================= note ====================
+heroku create
+git push heroku master
+
+heroku ps:scale web=1
+heroku open
+
+heroku logs --tail
+
+# Define a Procfile
+    web: gunicorn gettingstarted.wsgi --log-file -
+    python rs.py
+
+# 檢查dyno上有多少proc
+    heroku ps
+
+# 產生requirement
+    # 產生虛擬環境
+    virtualenv venv
+    source venv/bin/activate
+    # 產生requirement
+    pip install -r requirements.txt --allow-all-external
+
+# 測試
+    heroku local web
+
+# 更新
+    git add .
+    git commit -m "Demo"
+    git push heroku master
+
+# ================= init ====================
+heroku login
+
+virtualenv venv
+source venv/bin/activate
+pip freeze > requirements.txt
+# requirements.txt 也可以手動產生
+pip install -r requirements.txt --allow-all-external
+
+git add .
+git commit -m "Demo"
+git push heroku master
+
+heroku open
+
+# ================ update ===================
+git add .
+git commit -m "update"
+git push heroku master
+
+# ============== 幫助 debug =================
+heroku restart
+heroku local web
+heroku logs --tail
