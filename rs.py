@@ -12,16 +12,22 @@ app = Flask(__name__)
 TITLE = "Random Selector"
 port = 5000
 
-@app.route('/rs/')
+@app.route('/rs/',methods=['GET'])
 def rs():
-    return handler_core("Apple\nOrange\nBanana")
+    if request.method == 'GET':
+        slot_candidate = request.args.get('opt')
+        print [slot_candidate]
+        slot_candidate = slot_candidate.replace("|","\n")
+        return handler_core(slot_candidate)
+    else:
+        return handler_core("Apple\nOrange\nBanana")
 
 def handler_core(slot_candidate,title=TITLE):
     slot_candidate.strip()
     split_candidate = slot_candidate.split('\n')
     random.shuffle(split_candidate)
     split_candidate.append("")
-    # print split_candidate
+    print split_candidate
     render_coler = ["#FFCE29","#FFA22B","#FF8645","#FF6D3F","#FF494C","#FF3333","#FF0000"]
     cle = cycle(render_coler)
     slot_list = [ (idx+1,sc,cle.next()) for idx,sc in enumerate(split_candidate) ]
