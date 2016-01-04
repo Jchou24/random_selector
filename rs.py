@@ -10,8 +10,8 @@ app = Flask(__name__)
 
 # ================================================================
 TITLE = "Random Selector"
-REDIS_URL = os.environ['REDISCLOUD_URL']
-print REDIS_URL
+# REDIS_URL = os.environ['REDISCLOUD_URL']
+# print REDIS_URL
 
 @app.route('/rs/')
 def rs():
@@ -28,7 +28,8 @@ def handler_core(slot_candidate,title=TITLE):
     slot_list = [ (idx+1,sc,cle.next()) for idx,sc in enumerate(split_candidate) ]
     # print slot_list
 
-    html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,debug_info=str(REDIS_URL))
+    # html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,debug_info=str(REDIS_URL))
+    html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,debug_info=None)
     return html
 
 @app.route('/rs/rs_handler/',methods=['POST'])
@@ -49,6 +50,6 @@ def nccu_eat():
 # ================================================================
 
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
     # app.run(debug=True)
-    # app.run()
+    app.run(host="0.0.0.0",port=5000)

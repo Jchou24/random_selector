@@ -1,1 +1,1 @@
-web: python rs:app --log-file=-
+web: python rs.py
