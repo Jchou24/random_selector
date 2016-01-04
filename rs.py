@@ -28,7 +28,7 @@ def handler_core(slot_candidate,title=TITLE):
     # print slot_list
 
     # html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,debug_info=str(REDIS_URL))
-    html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,debug_info=port)
+    html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,port=port,debug_info=port)
     return html
 
 @app.route('/rs/rs_handler/',methods=['POST'])
