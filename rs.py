@@ -10,8 +10,7 @@ app = Flask(__name__)
 
 # ================================================================
 TITLE = "Random Selector"
-# REDIS_URL = os.environ['REDISCLOUD_URL']
-# print REDIS_URL
+port = 5000
 
 @app.route('/rs/')
 def rs():
@@ -29,7 +28,7 @@ def handler_core(slot_candidate,title=TITLE):
     # print slot_list
 
     # html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,debug_info=str(REDIS_URL))
-    html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,debug_info=None)
+    html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,debug_info=port)
     return html
 
 @app.route('/rs/rs_handler/',methods=['POST'])
