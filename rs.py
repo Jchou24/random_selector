@@ -28,7 +28,7 @@ def handler_core(slot_candidate,title=TITLE):
     # print slot_list
 
     # html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,debug_info=str(REDIS_URL))
-    html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,port=port,debug_info=port)
+    html = render_template('rs.html',slot_list=slot_list,slot_candidate=slot_candidate,title=title,port=port,debug_info=None)
     return html
 
 @app.route('/rs/rs_handler/',methods=['POST'])
@@ -43,12 +43,13 @@ def rs_handler():
 
 @app.route('/rs/nccu_eat/')
 def nccu_eat():
-    slot_candidate = u"\n".join([u"45大街",u"華越",u"驚奇"])
+    slot_candidate = u"\n".join([u"45大街",u"華越",u"金鮨"])
     # slot_candidate = "\n".join(["d","s","a"])
     return handler_core(slot_candidate=slot_candidate,title="NCCU Restaurant Selector")
 # ================================================================
 
 
 if __name__ == "__main__":
+    # app.run(debug=True)
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
