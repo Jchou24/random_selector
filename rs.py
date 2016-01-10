@@ -84,10 +84,12 @@ def age3y():
     slot_number = request.args.get('slot_number')
     slot_number = slot_number if slot_number and 1 <= int(slot_number) <= 4 else 1
 
-    # font_size = 140 * ( 1.22 - 0.22 * float(slot_number) )
-    # height = 200 * ( 1.15 - 0.15 * float(slot_number))
-    font_size = 140 * 0.73 ** ( int(slot_number)-1 )
-    height = 200 * 0.83 ** ( int(slot_number)-1 )
+    if language == 'ch':
+        font_size = 140 * 0.73 ** ( int(slot_number)-1 )
+        height = 200 * 0.83 ** ( int(slot_number)-1 )
+    if language == 'en':
+        font_size = 140 * 0.65 ** ( int(slot_number)-1 )
+        height = 200 * 0.83 ** ( int(slot_number)-1 )
 
     return render_template('age3y.html',font_size=font_size,height=height,tslot_list=tslot_list,bslot_list=bslot_list,slot_number=slot_number,language=language)
 # ================================================================
