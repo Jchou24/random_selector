@@ -67,7 +67,7 @@ def age3_en():
     return handler_core(slot_candidate=slot_candidate,title="Age 3 civilization Selector")
 
 @app.route('/rs/age3y/',methods=['GET'])
-def age3():
+def age3y():
     language = request.args.get('language')
     language = language if language else 'ch'
 
