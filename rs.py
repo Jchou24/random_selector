@@ -76,6 +76,11 @@ def age3y():
     if language == 'ch':
         slot_list = [u"英國",u"法國",u"德國",u"俄國",u"荷蘭",u"西班牙",u"葡萄牙",u"鄂圖曼",u"阿茲特克",u"易落魁",u"蘇族",u"中國",u"日本",u"印度"]
 
+    tslot_list = slot_list[:]
+    bslot_list = slot_list[:]
+    random.shuffle(tslot_list)
+    random.shuffle(bslot_list)
+
     slot_number = request.args.get('slot_number')
     slot_number = slot_number if slot_number and 1 <= int(slot_number) <= 4 else 1
 
@@ -84,7 +89,7 @@ def age3y():
     font_size = 140 * 0.73 ** ( int(slot_number)-1 )
     height = 200 * 0.83 ** ( int(slot_number)-1 )
 
-    return render_template('age3y.html',font_size=font_size,height=height,slot_list=slot_list,slot_number=slot_number,language=language)
+    return render_template('age3y.html',font_size=font_size,height=height,tslot_list=tslot_list,bslot_list=bslot_list,slot_number=slot_number,language=language)
 # ================================================================
 
 
