@@ -6,6 +6,7 @@ from itertools import cycle
 from flask import Flask
 from flask import render_template
 from flask import request
+from flask import url_for
 import flask
 app = Flask(__name__)
 
@@ -64,11 +65,31 @@ def age3_ch():
 def age3_en():
     slot_candidate = u"\n".join([u"British",u"French",u"Germans",u"Russians",u"Dutch",u"Spanish",u"Portuguese",u"Ottomans",u"Aztec",u"Iroquois",u"Sioux",u"Chinese",u"Japanese",u"Indians"])
     return handler_core(slot_candidate=slot_candidate,title="Age 3 civilization Selector")
+
+@app.route('/rs/age3y/',methods=['GET'])
+def age3():
+    language = request.args.get('language')
+    language = language if language else 'ch'
+
+    if language == 'en':
+        slot_list = [u"British",u"French",u"Germans",u"Russians",u"Dutch",u"Spanish",u"Portuguese",u"Ottomans",u"Aztec",u"Iroquois",u"Sioux",u"Chinese",u"Japanese",u"Indians"]
+    if language == 'ch':
+        slot_list = [u"英國",u"法國",u"德國",u"俄國",u"荷蘭",u"西班牙",u"葡萄牙",u"鄂圖曼",u"阿茲特克",u"易落魁",u"蘇族",u"中國",u"日本",u"印度"]
+
+    slot_number = request.args.get('slot_number')
+    slot_number = slot_number if slot_number and 1 <= int(slot_number) <= 4 else 1
+
+    # font_size = 140 * ( 1.22 - 0.22 * float(slot_number) )
+    # height = 200 * ( 1.15 - 0.15 * float(slot_number))
+    font_size = 140 * 0.73 ** ( int(slot_number)-1 )
+    height = 200 * 0.83 ** ( int(slot_number)-1 )
+
+    return render_template('age3y.html',font_size=font_size,height=height,slot_list=slot_list,slot_number=slot_number,language=language)
 # ================================================================
 
 
 if __name__ == "__main__":
-    # app.run(debug=True)
+    app.run(debug=True)
 
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    # port = int(os.environ.get("PORT", 5000))
+    # app.run(host='0.0.0.0', port=port)
